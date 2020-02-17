@@ -49,12 +49,6 @@ namespace Api
 
             app.UseAuthorization();
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync(Configuration["ConnectionStrings"]);
-            });
-
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
