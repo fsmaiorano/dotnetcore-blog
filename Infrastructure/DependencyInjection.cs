@@ -1,20 +1,20 @@
 ﻿using Application.Interfaces;
-using Application.Logic;
-using AutoMapper;
+using Infrastructure.Repositories;
+using Infrastructure.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 
-namespace Application
+namespace Infrastructure
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddApplication(this IServiceCollection services)
+        public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
-            services.AddAutoMapper(Assembly.GetExecutingAssembly());
-            services.AddTransient<IUserLogic, UserLogic>();
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
 
             //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPerformanceBehaviour<,>));
             //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));

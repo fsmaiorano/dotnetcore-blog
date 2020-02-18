@@ -21,5 +21,10 @@ namespace WebApp.Data
                 Summary = Summaries[rng.Next(Summaries.Length)]
             }).ToArray());
         }
+
+        public void Teste()
+        {
+
+        }
     }
 }

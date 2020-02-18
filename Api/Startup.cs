@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Application;
+using Infrastructure;
 
 namespace Api
 {
@@ -27,6 +28,8 @@ namespace Api
             services.AddDbContext<BlogContext>(option => option.UseLazyLoadingProxies().UseSqlServer(conn, m => m.MigrationsAssembly("Infrastructure")));
 
             services.AddApplication(); //Return DependencyInjection class
+            services.AddInfrastructure();
+
             services.AddControllers();
         }
 
@@ -37,7 +40,9 @@ namespace Api
             {
                 app.UseDeveloperExceptionPage();
             }
-            
+
+            app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
